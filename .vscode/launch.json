@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Mini Balatro",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/mini-balatro.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "C:\\raylib\\w64devkit\\bin;${env:PATH}"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/raylib/w64devkit/bin/gdb.exe",
+            "preLaunchTask": "Build Mini Balatro"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Mini Balatro",
+            "type": "process",
+            "command": "C:/raylib/w64devkit/bin/gcc.exe",
+            "args": [
+                "-std=c11",
+                "-Wall",
+                "-Wextra",
+                "-g",
+                "-O0",
+                "${workspaceFolder}/main.c",
+                "-I", "C:/raylib/w64devkit/include",
+                "-L", "C:/raylib/w64devkit/lib",
+                "-o", "${workspaceFolder}/mini-balatro.exe",
+                "-lraylib",
+                "-lopengl32",
+                "-lgdi32",
+                "-lwinmm"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\raylib\\w64devkit\\bin;${env:PATH}"
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Run Mini Balatro",
+            "type": "process",
+            "command": "${workspaceFolder}/mini-balatro.exe",
+            "dependsOn": "Build Mini Balatro",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\raylib\\w64devkit\\bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": []
+        }
+    ]
+}
