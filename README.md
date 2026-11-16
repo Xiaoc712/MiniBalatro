@@ -4,7 +4,7 @@
 
 ## 在 VS Code 中打开
 
-选择“文件 → 打开文件夹”，打开 `D:\agent工作区\mini-balatro`。
+选择“文件 → 打开文件夹”，打开 `D:\项目\MiniBalatro`。
 请把这个项目文件夹作为 VS Code 工作区打开，以便读取其中的 `.vscode` 配置。
 
 ## 编译、运行和调试
