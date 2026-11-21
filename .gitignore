@@ -1,2 +1,4 @@
 *.exe
 *.o
+# game assets (large, not uploaded) - entire folder
+resource/

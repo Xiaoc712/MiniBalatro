@@ -1,49 +1,58 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Build Mini Balatro",
-            "type": "process",
-            "command": "C:/raylib/w64devkit/bin/gcc.exe",
-            "args": [
-                "-std=c11",
-                "-Wall",
-                "-Wextra",
-                "-g",
-                "-O0",
-                "${workspaceFolder}/main.c",
-                "-I", "C:/raylib/w64devkit/include",
-                "-L", "C:/raylib/w64devkit/lib",
-                "-o", "${workspaceFolder}/mini-balatro.exe",
-                "-lraylib",
-                "-lopengl32",
-                "-lgdi32",
-                "-lwinmm"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "env": {
-                    "PATH": "C:\\raylib\\w64devkit\\bin;${env:PATH}"
-                }
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": ["$gcc"]
-        },
-        {
-            "label": "Run Mini Balatro",
-            "type": "process",
-            "command": "${workspaceFolder}/mini-balatro.exe",
-            "dependsOn": "Build Mini Balatro",
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "env": {
-                    "PATH": "C:\\raylib\\w64devkit\\bin;${env:PATH}"
-                }
-            },
-            "problemMatcher": []
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Mini Balatro",
+			"type": "shell",
+			"command": "D:/mingw64/bin/gcc.exe",
+			"args": [
+				"-std=c11",
+				"-Wall",
+				"-Wextra",
+				"-g",
+				"-O0",
+				"main.c",
+				"-I",
+				"D:/C/C_tools/raylib_6.2/include",
+				"-o",
+				"mini-balatro.exe",
+				"-L",
+				"D:/C/C_tools/raylib_6.2/lib",
+				"-lraylib",
+				"-lopengl32",
+				"-lgdi32",
+				"-lwinmm"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always",
+				"clear": true,
+				"echo": true
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"detail": "相对路径传参（避免中文目录被编码破坏）；新增 .c 文件时在 args 里加一行"
+		},
+		{
+			"label": "Run Mini Balatro",
+			"type": "shell",
+			"command": "mini-balatro.exe",
+			"dependsOn": "Build Mini Balatro",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"presentation": {
+				"reveal": "always",
+				"clear": true
+			},
+			"problemMatcher": []
+		}
+	]
 }

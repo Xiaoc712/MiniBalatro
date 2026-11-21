@@ -3,10 +3,10 @@
     "configurations": [
         {
             "name": "Windows GCC (raylib)",
-            "compilerPath": "C:/raylib/w64devkit/bin/gcc.exe",
+            "compilerPath": "D:/mingw64/bin/gcc.exe",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/raylib/w64devkit/include"
+                "D:/C/C_tools/raylib_6.2/include"
             ],
             "cStandard": "c11",
             "cppStandard": "c++17",

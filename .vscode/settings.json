@@ -1,0 +1,12 @@
+{
+	"code-runner.runInTerminal": true,
+	"code-runner.saveFileBeforeRun": true,
+	"code-runner.preserveFocus": false,
+	"code-runner.fileDirectoryAsCwd": true,
+	"code-runner.clearPreviousOutput": true,
+	"code-runner.executorMap": {
+		"c": "cd \"$dirWithoutTrailingSlash\"; gcc \"$fileName\" -o \"$fileNameWithoutExt.exe\" -I D:/C/C_tools/raylib_6.2/include -L D:/C/C_tools/raylib_6.2/lib -lraylib -lopengl32 -lgdi32 -lwinmm; if ($?) { & \".\\$fileNameWithoutExt.exe\" }",
+		"cpp": "cd \"$dirWithoutTrailingSlash\"; g++ \"$fileName\" -o \"$fileNameWithoutExt.exe\" -I D:/C/C_tools/raylib_6.2/include -L D:/C/C_tools/raylib_6.2/lib -lraylib -lopengl32 -lgdi32 -lwinmm; if ($?) { & \".\\$fileNameWithoutExt.exe\" }"
+	},
+	"C_Cpp.errorSquiggles": "enabled"
+}
