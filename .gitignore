@@ -1,10 +1,8 @@
 *.exe
 *.o
 
-# 素材目录：默认全部忽略
-resource/**
-# 但放行 poker_card1 下的卡片图片（逐级放行，git 的要求）
-!resource/poker_card1/
+# 暂时不上传：poker_card2 整个目录
+resource/poker_card2/
+# 暂时不上传：poker_card1 下除 PNG 以外的素材
+resource/poker_card1/*
 !resource/poker_card1/PNG/
-!resource/poker_card1/PNG/Cards/
-!resource/poker_card1/PNG/Cards/*.png
