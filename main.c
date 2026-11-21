@@ -9,7 +9,7 @@
 
 Card poker[52];//定义扑克牌
 
-int main(void)
+int main(int argc, char * argv)
 {
     //---------- 生成随机数种子 ----------
     srand((unsigned)time(NULL));
@@ -33,12 +33,22 @@ int main(void)
 
     /*************************************/
     //UI设计
-    InitWindow(WIDTH, HEIGHT, TITLE);
-    SetTargetFPS(60);
 
     //---------- 随机配色主题 ----------
         Theme theme = THEMES[rand() % THEME_COUNT];
 
+    //---------- 窗口创建 ----------
+    InitWindow(WIDTH, HEIGHT, TITLE);
+    SetTargetFPS(60);
+
+    //---------- 卡牌绘制 ----------
+    for(int i = 0; i < 13; i++){
+        for(int j = 0; j < 4; j++){
+            char path[256];
+            Texture2D card_face[52];
+            card_face[4 * i + j] = LoadTexture(path);
+        }
+    }
     while(!WindowShouldClose()){
         //绘图
         BeginDrawing();
@@ -47,6 +57,8 @@ int main(void)
         //---------- 背景绘制 ----------
         DrawRectangleGradientV(0, 0, WIDTH, HEIGHT, theme.bgTop, theme.bgBottom);
         DrawCircleGradient(CIRCLE_CENTER, RADIUS, theme.glowInner, theme.glowOuter);
+
+        //
 
         EndDrawing();
         //事件处理
