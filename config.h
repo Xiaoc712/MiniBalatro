@@ -4,12 +4,12 @@
 
 #include<raylib.h>
 
-// ---------- 窗口 ----------
+// ---------- 窗口信息 ----------
 #define WIDTH  1280
 #define HEIGHT 720
 #define TITLE  "MiniBalatro"
 
-// ---------- 背景 ----------
+// ---------- 背景信息 ----------
 #define RADIUS 460
 
 static const Vector2 CIRCLE_CENTER = { WIDTH / 2, (int)(HEIGHT*(0.44)) };
