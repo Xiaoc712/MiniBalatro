@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<time.h>
 
-#include "Cards.h"
+#include "cards.h"
 #include "config.h"
 
 
