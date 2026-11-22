@@ -42,7 +42,7 @@ static const char *RANK_NAME[13] = { "2","3","4","5","6","7","8","9","10","J","Q
 //手牌间距
 #define HAND_STEP (int)(CARD_TEX_WIDTH*1.2)
 //手牌侧边距
-#define HAND_LEFT_GAP (int)((BG_WIDTH - CARD_TEX_WIDTH - HAND_STEP*(NUM_HAND - 1))/2)
+#define HAND_LEFT_GAP (int)((BG_WIDTH - CARD_TEX_WIDTH - HAND_STEP*(HAND_SIZE - 1))/2)
 #define HAND_UP_GAP 450
 
 #endif
