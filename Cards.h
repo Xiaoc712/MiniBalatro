@@ -9,6 +9,9 @@ typedef struct {
     Suit suit;
 }Card;
 
+#define NUM_HAND 8
+
 extern Card poker[52];
+extern int hand[NUM_HAND];
 
 #endif
