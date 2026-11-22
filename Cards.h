@@ -24,6 +24,8 @@ extern Card poker[52];
 extern int hand[HAND_SIZE];
 
 //---------- 函数声明 ----------
+void shuffle(Card * Deck, int n);//洗牌函数
+void fill_hand(int * hand);//抽牌至手牌上限
 int hand_type(int *cards);/*判断手牌类型函数，输入的是经过排序的待操作牌值数组*/
 void joker_scoring(int *chips, int *multiply, int card_type);/*调用已经购买的joker的计分函数*/
 int score_calculate(int *chosen);/*计分函数*/
