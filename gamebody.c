@@ -1,7 +1,7 @@
 #include<stdio.h>
 
 
-#include"Cards.h"
+#include"cards.h"
 
 int money = 4;
 int cards_left = 52;
@@ -54,7 +54,7 @@ int hand_type(int *cards)/*判断手牌类型函数，输入的是经过排序�
         else if(card_point[i] == 3) threes++;
         else if(card_point[i] == 4) fours++;
     }
-    
+
     for(i = 0; i < 4; i++){
         if(card_suit[i] == 5) flush = 1;/*同花*/
     }
