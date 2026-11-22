@@ -1,9 +1,7 @@
 #include<stdio.h>
 
-#define FINAL_ROUND 10
-#define SCORE_STEP 150
-#define HAND_SIZE 8
-#define CHOSEN_MAX 5
+
+#include"Cards.h"
 
 int money = 4;
 int cards_left = 52;
@@ -16,10 +14,13 @@ char command;
 int card_chosen[CHOSEN_MAX];/*选择的牌数组*/
 int card_hand[HAND_SIZE];/*手牌数组*/
 char input_line[128];/*原始输入*/
-int num;/*选择的待操作牌数*/
-int jokers[3] = {0};/*小丑牌数组，存放购买的joker牌值。*//*小丑(Normal)：+4倍率； 半张(Half)：出牌数≤3时+8倍率； 旗手(Banner)：每剩一次弃牌+30筹码*/
+int chose_num;/*选择的待操作牌数*/
+
+int jokers[3] = {0};//小丑牌数组，存放购买的joker牌值。小丑(Normal)：+4倍率； 半张(Half)：出牌数≤3时+8倍率； 旗手(Banner)：每剩一次弃牌+30筹码
+
 int card_suit[4] = {0};/*红桃，黑桃，梅花，方块*/
 int card_point[13] = {0};/*2，3，4，5，6，7，8，9，10，J，Q，K, A*/
+
 int card_value[CHOSEN_MAX];
 
 
@@ -31,14 +32,15 @@ int hand_type(int *cards)/*判断手牌类型函数，输入的是经过排序�
     int chosen_point[5] = {0};/*选择的牌点数*/
     for(i = 0; i < 4; i++)  card_suit[i] = 0;   /*每次判断前清零，否则计数会一直累加*/
     for(i = 0; i < 13; i++) card_point[i] = 0;
-    for(i = 0; i < num; i++){
+    for(i = 0; i < chose_num; i++){
         card_suit[(cards[i]-1)/13]++;
         card_point[(cards[i]-1)%13]++;
         chosen_point[i] = (cards[i]-1)%13;
     }
-    for(i = 0; i < num-1; i++)
+
+    for(i = 0; i < chose_num-1; i++)//选择的牌排序
     {
-        for(j = 0; j < num-1-i; j++){
+        for(j = 0; j < chose_num-1-i; j++){
             if(chosen_point[j] > chosen_point[j+1]){
                 int temp = chosen_point[j];
                 chosen_point[j] = chosen_point[j+1];
@@ -46,11 +48,13 @@ int hand_type(int *cards)/*判断手牌类型函数，输入的是经过排序�
             }
         }
     }
+
     for(i = 0; i < 13; i++){
         if(card_point[i] == 2) pairs++;
         else if(card_point[i] == 3) threes++;
         else if(card_point[i] == 4) fours++;
     }
+    
     for(i = 0; i < 4; i++){
         if(card_suit[i] == 5) flush = 1;/*同花*/
     }
@@ -59,7 +63,7 @@ int hand_type(int *cards)/*判断手牌类型函数，输入的是经过排序�
     else if(threes == 1) return 6;/*三条*/
     else if(pairs == 2) return 7;/*两对*/
     else if(pairs == 1) return 8;/*一对*/
-    else if(num == 5 && chosen_point[4] ==chosen_point[3]+1 && chosen_point[3] == chosen_point[2]+1 && chosen_point[2] == chosen_point[1]+1 && chosen_point[1] == chosen_point[0]+1){
+    else if(chose_num == 5 && chosen_point[4] ==chosen_point[3]+1 && chosen_point[3] == chosen_point[2]+1 && chosen_point[2] == chosen_point[1]+1 && chosen_point[1] == chosen_point[0]+1){
         if(flush == 1) return 1;/*同花顺*/
         else return 5;/*顺子*/
     }
@@ -71,7 +75,7 @@ void joker_scoring(int *chips, int *multiply, int card_type)/*调用已经购买
 {
     int i, best;
     if(jokers[0] == 1) *multiply += 4;/*小丑(Normal)*/
-    if(jokers[1] == 1 && num <= 3) *multiply += 8;/*半张(Half)*/
+    if(jokers[1] == 1 && chose_num <= 3) *multiply += 8;/*半张(Half)*/
     if(jokers[2] == 1) *chips += 30;/*旗手(Banner)*/
     switch(card_type)
     {
@@ -151,7 +155,7 @@ void joker_scoring(int *chips, int *multiply, int card_type)/*调用已经购买
         default: {
             *chips = 5; *multiply = 1;
             best = 0;
-            for(i = 0; i < num; i++){                 /*高牌：找最大的点数，不能直接用最后一张*/
+            for(i = 0; i < chose_num; i++){                 /*高牌：找最大的点数，不能直接用最后一张*/
                 if((card_value[i]-1) % 13 > best){
                     best = (card_value[i]-1) % 13;
                 }
@@ -171,12 +175,12 @@ int score_calculate(int *chosen)/*计分函数*/
     int multiply = 0;
     int card_type;
     int i, j;
-    for(i = 0; i < num; i++){
+    for(i = 0; i < chose_num; i++){
         card_value[i] = card_hand[chosen[i]-1];
     }/*将选择的序号转换为牌值*/
-    for(i = 0; i < num-1; i++)/*整理手牌，按花色和点数升序*/
+    for(i = 0; i < chose_num-1; i++)/*整理手牌，按花色和点数升序*/
     {
-        for(j = 0; j < num-1-i; j++){
+        for(j = 0; j < chose_num-1-i; j++){
             if(card_value[j] > card_value[j+1]){
                 int temp = card_value[j];
                 card_value[j] = card_value[j+1];
@@ -217,10 +221,10 @@ int main()
 
             
             scanf("输入待操作的卡牌序号：%s",input_line);
-            num = sscanf(input_line,"%d%d%d%d%d",&card_chosen[0],&card_chosen[1],
+            chose_num = sscanf(input_line,"%d%d%d%d%d",&card_chosen[0],&card_chosen[1],
                          &card_chosen[2],&card_chosen[3],&card_chosen[4]);
             scanf("操作指令：%c",&command);
-            cards_left -= num;
+            cards_left -= chose_num;
 
             if(command == 'p'){
                 p_times--;
