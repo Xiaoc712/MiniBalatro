@@ -1,14 +1,14 @@
 #include<raylib.h>
 #include<stdio.h>
-#include<string.h>
 #include<stdlib.h>
 #include<time.h>
+
 #include "Cards.h"
 #include "config.h"
 
 
 Card poker[52];//定义扑克牌
-int hand[NUM_HAND];//定义手牌
+int hand[HAND_SIZE];//定义手牌
 
 int main(void)
 {
@@ -27,7 +27,10 @@ int main(void)
     for(int i = 0; i < 52; i++){
             printf("%-7d %d\n",poker[i].suit,poker[i].rank);
     }*/
-    //---------- 生成随机数种子 ----------
+
+
+
+
 
 
 
@@ -68,7 +71,7 @@ int main(void)
         DrawCircleGradient(CIRCLE_CENTER, RADIUS, theme.glowInner, theme.glowOuter);
 
         //---------- 卡牌绘制 ----------
-        for(int i = 0; i < NUM_HAND; i++){
+        for(int i = 0; i < HAND_SIZE; i++){
             DrawTexturePro(
                 card_tex[hand[i]],
                 //纹理裁剪大小
