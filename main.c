@@ -3,11 +3,14 @@
 #include<stdlib.h>
 #include<time.h>
 
-#include "Cards.h"
+#include "cards.h"
 #include "config.h"
 
 
-Card poker[52];//定义扑克牌
+Card poker[52]; //定义扑克牌身份
+Card Deck[52]; //随机顺序牌库
+
+Card * deck_top = Deck;//指向牌堆顶
 int hand[HAND_SIZE];//定义手牌
 
 int main(void)
@@ -27,11 +30,18 @@ int main(void)
     for(int i = 0; i < 52; i++){
             printf("%-7d %d\n",poker[i].suit,poker[i].rank);
     }*/
+    for(int i = 0; i < 52; i++){
+        Deck[i] = poker[i];
+    }
 
+    //---------- 洗牌 ----------
+    shuffle(Deck, 52);
 
-
-
-
+    //---------- 发牌 ----------
+    for(int i = 0; i < HAND_SIZE; i++){
+        hand[i] = -1;//-1代表当前位置没有手牌
+    }
+    fill_hand(hand);
 
 
     /*************************************/
@@ -96,4 +106,24 @@ int main(void)
     }
     CloseWindow();
     return 0;
+}
+
+void shuffle(Card * Deck, int n)//洗牌函数
+{
+    for(int i = n - 1; i > 0; i--){
+        int j = rand()%(i + 1);
+        Card temp = Deck[i];
+        Deck[i] = Deck[j];
+        Deck[j] = temp;
+    }
+}
+
+void fill_hand(int * hand)//抽牌至手牌上限
+{
+    for(int i = 0; i < HAND_SIZE; i++){
+        if(hand[i] == -1){
+            hand[i] = 4*deck_top->rank + deck_top->suit;
+            deck_top++;
+        }
+    }
 }
