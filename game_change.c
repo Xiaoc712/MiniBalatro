@@ -8,7 +8,7 @@
 
 
 Card poker[52];//定义扑克牌
-int hand[HAND_SIZE];//定义手牌
+int hand[HAND_SIZE];//定义手牌，代表手牌序号
 
 
 int money = 4;
@@ -289,8 +289,4 @@ int hand_type(int *cards)/*判断手牌类型函数，输入的是经过排序�
 //     score += chips * multiply;
 //     return score;
 // }
-
-
-// void card_deal();/*发牌函数*/
-
 
