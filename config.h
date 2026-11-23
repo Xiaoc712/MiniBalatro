@@ -36,13 +36,29 @@ static const char *RANK_NAME[13] = { "2","3","4","5","6","7","8","9","10","J","Q
 
 #define CARD_DIR "./resource/poker_card1/PNG/Cards/"
 
+// ---------- 计分面板信息 ----------
+#define PANEL_X 30 //面板左上角
+#define PANEL_Y 30
+#define PANEL_WIDTH 248
+#define PANEL_HEIGHT 600
+const Color PANEL_BG_COLOR = {34, 69, 103, 250};
+
 // ---------- 卡牌纹理信息 ----------
 #define CARD_TEX_WIDTH 112
 #define CARD_TEX_HEIGHT 152
 //手牌间距
-#define HAND_STEP (int)(CARD_TEX_WIDTH*1.2)
+#define HAND_STEP 84
 //手牌侧边距
-#define HAND_LEFT_GAP (int)((BG_WIDTH - CARD_TEX_WIDTH - HAND_STEP*(HAND_SIZE - 1))/2)
+#define HAND_LEFT_GAP 380
 #define HAND_UP_GAP 450
+#define ARC 2.2 //弧形系数
+#define TILT 2.5 //旋转系数
+
+// ---------- 卡背纹理信息 ----------
+#define BACK_X 1160
+#define BACK_Y 540
+
+// ---------- 绘图函数声明 ----------
+void draw_panel(int target, int score, int money, int round_no, int plays, int discards);//绘制计分板
 
 #endif
